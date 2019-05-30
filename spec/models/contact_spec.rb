@@ -2,10 +2,13 @@ require 'rails_helper'
 
 describe Contact do
   it "has a valid factory" do
-    expect(build(:contact)).to be_valid
+    #para usar simplemente "build", ajuste esta línea en spec/rails_helper.rb
+    #config.include FactoryGirl::Syntax::Methods
+    expect(FactoryGirl.build(:contact)).to be_valid
   end
 
   it "is invalid without a firstname" do
+    #lo que antes se hacia ajustando 3 parámetros ahora se hace con sólo una orden
     contact = build(:contact, firstname: nil)
     contact.valid?
     expect(contact.errors[:firstname]).to include("can't be blank")
