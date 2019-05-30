@@ -28,10 +28,12 @@ describe Contact do
   end
 
   it "is invalid with a duplicate email address" do
+    #se avienta un contacto a la BD
     Contact.create(
       firstname: 'Joe', lastname: 'Tester',
       email: 'tester@example.com'
     )
+    #luego se compara vs alguien que apenas se quiere registrar
     contact = Contact.new(
       firstname: 'Jane', lastname: 'Tester',
       email: 'tester@example.com'
@@ -41,7 +43,7 @@ describe Contact do
   end
 
   it "returns a contact's full name as a string" do
-    contact = Contact.new(
+    contact = Contact.create(
       firstname: 'John',
       lastname: 'Doe',
       email: 'johndoe@example.com'
@@ -49,7 +51,8 @@ describe Contact do
     expect(contact.name).to eq 'John Doe'
   end
 
-  describe "filter last name by letter" do
+  describe "filter last name by letter" do #bloque que hace focus en el retrieve and filter
+    #Aquí se usa .create porque previo a filtrar resultados debe haber algo en la BD
     before :each do
       @smith = Contact.create(
         firstname: 'John',

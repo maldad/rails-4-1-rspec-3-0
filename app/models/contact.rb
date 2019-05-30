@@ -7,6 +7,7 @@ class Contact < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
 
   def name
+    #firstname + " " + lastname
     [firstname, lastname].join(' ')
   end
 
